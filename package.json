@@ -19,7 +19,8 @@
     "polka": "next",
     "sirv": "^1.0.0",
     "style-loader": "^2.0.0",
-    "xml2js": "^0.4.23"
+    "xml2js": "^0.4.23",
+    "xmldom": "^0.4.0"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^1.0.10",

@@ -58,13 +58,7 @@
       <th>ファイル名</th>
       <th>拡張子</th>
       <th colspan="3" style="text-align: right">
-        <v-btn
-          color="error"
-          rounded
-          outlined
-          x-small
-          on:click={fileReset}
-        >リセット</v-btn>
+        <button class="button is-small is-danger" on:click={fileReset}>リセット</button>
       </th>
     </tr>
   </thead>
@@ -86,3 +80,18 @@
   </tbody>
 </table>
 
+<style>
+  .is-word {
+    background-color: lightblue;
+  }
+  
+  .is-excel {
+    background-color: lightgreen;
+  }
+  
+  .is-ppt {
+    background-color: lightsalmon;
+  }
+  
+  </style>
+  

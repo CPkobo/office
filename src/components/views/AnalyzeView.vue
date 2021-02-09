@@ -53,7 +53,7 @@
   import ContentCard from '../ContentCard.vue'
 
   import { WWCRate, WWCInfo, WWCReport,
-          DiffInfo, DiffSeg, SimilarSegment } from '../funcs/diff'
+          DiffInfo, DiffSeg, SimilarSegment } from '../office-funcs/diff'
 
   export default Vue.extend({
     data() {

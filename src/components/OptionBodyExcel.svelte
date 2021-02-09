@@ -5,6 +5,7 @@
   const dispatch = createEventDispatcher()
 
   let xlOpt: ExcelOption = {};
+  let btnText: string = '実行'
   
   onMount(() => {
     xlOpt.readHiddenSheet = $excelOpt.readHiddenSheet
@@ -24,6 +25,7 @@
 
   function childExecution(): void {
     setOptions()
+    btnText = '読み込み中...'
     dispatch('execute')
   }
 
@@ -55,7 +57,7 @@
   </div>
 
   <div class="container">
-    <button class="button is-fullwidth is-primary" on:click={childExecution}>実行</button>
+    <button class="button is-fullwidth is-primary" on:click={childExecution}>{btnText}</button>
   </div>
     
   </div>  

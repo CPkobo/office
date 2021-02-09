@@ -1,12 +1,18 @@
 <script lang="ts">
   import { goto } from '@sapper/app';
+  
   import { srcs, tgts } from '../store/files'
+  import { cxt } from '../store/context'
+  import { commonOpt, excelOpt, pptOpt, wordOpt, wordOpt2 } from '../store/opt';
+
   import OptionBodyCommon from './OptionBodyCommon.svelte'
   import OptionBodyExcel from './OptionBodyExcel.svelte';
   import OptionBodyPpt from './OptionBodyPPT.svelte';
   import OptionBodyWord from './OptionBodyWord.svelte';
 
-  export let mode: String;
+  import { blobContentsReader } from '../office-funcs/util'
+
+  export let mode: string;
 
   let errMessage = ''
   let activePanel = 'common'
@@ -14,12 +20,10 @@
   function execution(): void {
     switch (mode) {
       case 'extract':
-        console.log('after destroy?')
         execExtract()
           break;
 
       case 'align':
-      console.log('after destroy?')
         execAlign()
           break;
 
@@ -33,7 +37,18 @@
     if (srcFileNums === 0) {
       errMessage = '最低 1ファイルは必要です'
     } else {
-      goto('loading_extract')
+      // goto('loading_extract')
+      const opq: OptionQue = {
+        common: $commonOpt,
+        word: $wordOpt,
+        excel: $excelOpt,
+        ppt: $pptOpt
+      }
+      blobContentsReader($srcs.files, $srcs.order, opq).then((exConts: ExtractedContent[]) => {
+        $cxt.readContent(exConts)
+        // console.log($cxt.getRawContent('src'))
+        goto('result_extract')
+      })
     }
   }
 
@@ -60,7 +75,27 @@
         }
       }
       if (!formatErr) {
-        errMessage = 'これから'
+        const prs: Promise<ExtractedContent[]>[] = []
+        const opq: OptionQue = {
+          common: $commonOpt,
+          word: $wordOpt,
+          excel: $excelOpt,
+          ppt: $pptOpt
+        }
+        const opq2: OptionQue = {
+          common: $commonOpt,
+          word: $wordOpt2,
+          excel: $excelOpt,
+          ppt: $pptOpt
+        }        
+        prs.push(blobContentsReader($srcs.files, $srcs.order, opq))
+        prs.push(blobContentsReader($tgts.files, $tgts.order, opq))
+        Promise.all(prs).then((res: ExtractedContent[][]) => {
+          $cxt.readContent(res[0], res[1])
+          goto('result_align')
+        }).catch((failure: ReadFailure) => {
+          console.log(failure.detail)
+        })
       }
     }
   }
@@ -73,11 +108,35 @@
     </div>
     <div class="level-item">
       <nav class="tabs is-cnetered">
-        <ul>
-          <li class:is-active={activePanel === 'common'} on:click={() => activePanel = 'common'}><a>共通</a></li>
-          <li class:is-active={activePanel === 'word'} on:click={() => activePanel = 'word'}><a>Word</a></li>
-          <li class:is-active={activePanel === 'excel'} on:click={() => activePanel = 'excel'}><a>Excel</a></li>
-          <li class:is-active={activePanel === 'ppt'} on:click={() => activePanel = 'ppt'}><a>PPT</a></li>
+        <ul class="buttons">
+          <li>
+            <button
+              class:is-active={activePanel === 'common'}
+              class="button is-outlined m-2"
+              on:click={() => activePanel = 'common'}
+            >共通</button>
+          </li>
+          <li>
+            <button
+            class:is-active={activePanel === 'word'}
+            class="button is-outlined m-2"
+            on:click={() => activePanel = 'word'}
+          >Word</button>
+          </li>
+          <li>
+            <button
+              class:is-active={activePanel === 'excel'}
+              class="button is-outlined m-2"
+              on:click={() => activePanel = 'excel'} 
+            >Excel</button>
+          </li>
+          <li>
+            <button
+              class:is-active={activePanel === 'ppt'}
+              class="button is-outlined m-2"
+              on:click={() => activePanel = 'ppt'}
+            >PPT</button>
+          </li>
         </ul>
       </nav>
     </div>

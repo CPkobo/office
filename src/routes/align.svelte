@@ -1,5 +1,6 @@
 <script>
-	import FileCard from '../components/FileCard.svelte'	
+	import FileCard from '../components/FileCard.svelte'
+	import OptionTabs from '../components/OptionTabs.svelte'	
 </script>
 
 <style>
@@ -11,5 +12,13 @@
 	<title>CATOVIS Office | テキスト抽出・対訳作成・文字数解析 etc...</title>
 </svelte:head>
 
-<FileCard isSrcOrTgt="src" />
-<FileCard isSrcOrTgt="tgt" />
+<div class="columns">
+	<div class="column is-9">
+		<FileCard isSrcOrTgt="src" />
+		<FileCard isSrcOrTgt="tgt" />
+		<OptionTabs mode="align" />
+	</div>
+	<div class="column is-3">
+		<p>ads here</p>
+	</div>
+</div>

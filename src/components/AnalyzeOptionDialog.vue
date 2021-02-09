@@ -220,8 +220,8 @@
 
 <script lang="ts">
   import Vue from 'vue'
-  import { OptionQue, ReadingOption } from '../funcs/option'
-  import { WWCRate } from '../funcs/diff'
+  import { OptionQue, ReadingOption } from '../office-funcs/option'
+  import { WWCRate } from '../office-funcs/diff'
 
   export default Vue.extend({
     created() {

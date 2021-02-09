@@ -3,7 +3,8 @@
   import { wordOpt, wordOpt2 } from '../store/opt'
   
   const dispatch = createEventDispatcher()
-  export let mode: String;
+  export let mode: string;
+  export let btnText: string = '実行'
 
   let wdOpt1: WordOption = {};
   let wdOpt2: WordOption = {};
@@ -27,6 +28,7 @@
 
   function childExecution(): void {
     setOptions()
+    btnText = '読み込み中...'
     dispatch('execute')
   }
 

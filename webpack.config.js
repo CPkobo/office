@@ -34,6 +34,7 @@ module.exports = {
 					use: {
 						loader: 'svelte-loader',
 						options: {
+							onwarn: false,
 							dev,
 							hydratable: true,
 							preprocess: sveltePreprocess({ sourceMap: dev }),

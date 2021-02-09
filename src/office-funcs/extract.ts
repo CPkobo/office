@@ -109,7 +109,7 @@ export class ExtractContext {
           result.push(file.name);
         }
         for (const text of file.exts) {
-          if (!opt.excel.readHiddenSheet || !text.isActive) {
+          if (!text.isActive) {
             continue;
           }
           if (opt.common.withSeparator) {

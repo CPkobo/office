@@ -3,6 +3,8 @@
   import { pptOpt } from '../store/opt'
 
   const dispatch = createEventDispatcher()
+  let btnText: string = '実行'
+  
   let pOpt: PptOption = {};
   
   onMount(() => {
@@ -21,6 +23,7 @@
 
   function childExecution(): void {
     setOptions()
+    btnText = '読み込み中...'
     dispatch('execute')
   }
 
@@ -39,6 +42,6 @@
     </div>
   </div>
   <div class="container">
-    <button class="button is-fullwidth is-primary" on:click={childExecution}>実行</button>
+    <button class="button is-fullwidth is-primary" on:click={childExecution}>{btnText}</button>
   </div>
 </div>  

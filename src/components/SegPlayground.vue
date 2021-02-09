@@ -41,8 +41,8 @@
 
 <script lang="ts">
   import Vue from 'vue'
-  import { applySegRules } from '../funcs/util'
-  import { ReadingOption, OptionQue } from '../funcs/option'
+  import { applySegRules } from '../office-funcs/util'
+  import { ReadingOption, OptionQue } from '../office-funcs/option'
 
   export default Vue.extend({
     data() {

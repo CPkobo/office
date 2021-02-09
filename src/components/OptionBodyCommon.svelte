@@ -3,7 +3,8 @@
   import { commonOpt, browserOpt, wwcOpt} from '../store/opt'
   
   const dispatch = createEventDispatcher()
-  export let mode: String;
+  export let mode: string;
+  let btnText: string = '実行'
 
   let brsOpt = {
     isAutoDown: true,
@@ -57,6 +58,7 @@
 
   function childExecution(): void {
     setOptions()
+    btnText = '読み込み中...'
     dispatch('execute')
   }
 
@@ -175,7 +177,7 @@
   {/if}
 
   <div class="container">
-    <button class="button is-fullwidth is-primary" on:click={childExecution}>実行</button>
+    <button class="button is-fullwidth is-primary" on:click={childExecution}>{btnText}</button>
   </div>
 
 </div>
