@@ -9,6 +9,7 @@
   import OptionBodyExcel from './OptionBodyExcel.svelte';
   import OptionBodyPpt from './OptionBodyPPT.svelte';
   import OptionBodyWord from './OptionBodyWord.svelte';
+  import OptionBodyWWC from './OptionBodyWWC.svelte'
 
   import { blobContentsReader } from '../office-funcs/util'
 
@@ -137,18 +138,29 @@
               on:click={() => activePanel = 'ppt'}
             >PPT</button>
           </li>
+          {#if mode === 'extract'}
+          <li>
+            <button
+              class:is-active={activePanel === 'wwc'}
+              class="button is-outlined m-2"
+              on:click={() => activePanel = 'wwc'}
+            >重複による割合</button>
+          </li>
+          {/if}
         </ul>
       </nav>
     </div>
   </div>
   {#if activePanel === 'common'}
-    <OptionBodyCommon {mode} on:execute={execution} />
+    <OptionBodyCommon on:execute={execution} />
   {:else if activePanel === 'word'}
     <OptionBodyWord {mode} on:execute={execution} />
   {:else if activePanel === 'excel'}
     <OptionBodyExcel on:execute={execution} />
   {:else if activePanel === 'ppt'}
     <OptionBodyPpt on:execute={execution} />
+  {:else if activePanel === 'wwc'}
+    <OptionBodyWWC on:execute={execution} />
   {/if}
   
   {#if errMessage !== ''}
