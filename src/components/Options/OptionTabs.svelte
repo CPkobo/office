@@ -1,17 +1,16 @@
 <script lang="ts">
   import { goto } from '@sapper/app';
   
-  import { srcs, tgts } from '../store/files'
-  import { cxt } from '../store/context'
-  import { commonOpt, excelOpt, pptOpt, wordOpt, wordOpt2 } from '../store/opt';
+  import { srcs, tgts } from '../../store/files'
+  import { cxt } from '../../store/context'
+  import { commonOpt, excelOpt, pptOpt, wordOpt, wordOpt2 } from '../../store/opt';
 
   import OptionBodyCommon from './OptionBodyCommon.svelte'
   import OptionBodyExcel from './OptionBodyExcel.svelte';
   import OptionBodyPpt from './OptionBodyPPT.svelte';
   import OptionBodyWord from './OptionBodyWord.svelte';
-  import OptionBodyWWC from './OptionBodyWWC.svelte'
 
-  import { blobContentsReader } from '../office-funcs/util'
+  import { blobContentsReader, path2FormatClassify } from '../../office-funcs/util'
 
   export let mode: string;
 
@@ -65,11 +64,13 @@
       for (let i = 0; i < srcFileNums; i++) {
         const sox = $srcs.order[i]
         const sfName = $srcs.files[sox].name
-        const sfFormat = sfName.substr(sfName.lastIndexOf('.'))
+        const sfFormat = path2FormatClassify(sfName)
         const tox = $tgts.order[i]
         const tfName = $tgts.files[tox].name
-        const tfFormat = tfName.substr(tfName.lastIndexOf('.'))
+        const tfFormat = path2FormatClassify(tfName)
         if (sfFormat !== tfFormat) {
+          console.log(sfFormat)
+          console.log(tfFormat)
           errMessage = `原文${i + 1}と訳文${i + 1}のファイルの拡張子が違います`
           formatErr = true
           break
@@ -138,15 +139,6 @@
               on:click={() => activePanel = 'ppt'}
             >PPT</button>
           </li>
-          {#if mode === 'extract'}
-          <li>
-            <button
-              class:is-active={activePanel === 'wwc'}
-              class="button is-outlined m-2"
-              on:click={() => activePanel = 'wwc'}
-            >重複による割合</button>
-          </li>
-          {/if}
         </ul>
       </nav>
     </div>
@@ -159,8 +151,6 @@
     <OptionBodyExcel on:execute={execution} />
   {:else if activePanel === 'ppt'}
     <OptionBodyPpt on:execute={execution} />
-  {:else if activePanel === 'wwc'}
-    <OptionBodyWWC on:execute={execution} />
   {/if}
   
   {#if errMessage !== ''}

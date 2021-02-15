@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount, createEventDispatcher } from 'svelte'
-  import { wordOpt, wordOpt2 } from '../store/opt'
+  import { wordOpt, wordOpt2 } from '../../store/opt'
   
   const dispatch = createEventDispatcher()
   export let mode: string;
@@ -41,18 +41,19 @@
     </div>
     <div class="column is-8">
       <div class="field">
-        <input type="checkbox" class="switch" name="rev1" bind:checked={wdOpt1.afterRev}>
+        <input type="checkbox" class="switch" id="rev1" bind:checked={wdOpt1.afterRev}>
         <label for="rev1">{isafterRev1}</label>
       </div>
       {#if mode === "align"}
         <div class="field">
-          <input type="checkbox" class="switch" name="rev2" bind:checked={wdOpt2.afterRev}>
+          <input type="checkbox" class="switch" id="rev2" bind:checked={wdOpt2.afterRev}>
           <label for="rev2">{isafterRev2}</label>
         </div>
       {/if}
     </div>
   </div>
   <div class="container">
-    <button class="button is-fullwidth is-primary" on:click={childExecution}>実行</button>
+    <button class="button is-fullwidth is-teal" on:click={childExecution}>実行</button>
   </div>
 </div>
+

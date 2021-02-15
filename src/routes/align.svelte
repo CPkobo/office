@@ -1,6 +1,8 @@
 <script>
-	import FileCard from '../components/FileCard.svelte'
-	import OptionTabs from '../components/OptionTabs.svelte'	
+	import FileCard from '../components/Files/FileCard.svelte'
+	import OptionTabs from '../components/Options/OptionTabs.svelte'
+	import AdTemplateV from '../components/ads/AdTemplateV.svelte';
+
 </script>
 
 <style>
@@ -19,6 +21,6 @@
 		<OptionTabs mode="align" />
 	</div>
 	<div class="column is-3">
-		<p>ads here</p>
+		<AdTemplateV />
 	</div>
 </div>

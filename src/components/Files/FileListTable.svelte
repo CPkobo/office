@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { srcs, tgts } from '../store/files'
+  import { srcs, tgts } from '../../store/files'
+
+  import { path2Format } from '../../office-funcs/util'
 
   export let isSrcOrTgt: String;
   let isWhich: FilesInfo = {
@@ -40,26 +42,18 @@
       tgts.fileRemove(index)
     }
   }
-
-  function fileReset(): void {
-    if (isSrcOrTgt === 'src') {
-      srcs.fileReset()
-    } else {
-      tgts.fileReset()
-    }
-  }
 </script>
 
 
-<table class="table is-fullwidth">
+<table class="table is-fullwidth is-narrow">
   <thead>
     <tr>
       <th>番号</th>
       <th>ファイル名</th>
       <th>拡張子</th>
-      <th colspan="3" style="text-align: right">
+      <!-- <th colspan="3" style="text-align: right">
         <button class="button is-small is-danger" on:click={fileReset}>リセット</button>
-      </th>
+      </th> -->
     </tr>
   </thead>
   <tbody>
@@ -71,7 +65,7 @@
       >
         <td>{idx + 1}</td>
         <td>{isWhich.files[ox].name}</td>
-        <td>{isWhich.files[ox].name.lastIndexOf('.')}</td>
+        <td>{path2Format(isWhich.files[ox].name)}</td>
         <td on:click={() => fileUp(idx)}>↑</td>
         <td on:click={() => fileDown(idx)}>↓</td>
         <td on:click={() => fileRemove(idx)}>×</td>

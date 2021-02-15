@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount, createEventDispatcher } from 'svelte'
-  import { pptOpt } from '../store/opt'
+  import { pptOpt } from '../../store/opt'
 
   const dispatch = createEventDispatcher()
   let btnText: string = '実行'
@@ -36,12 +36,12 @@
     </div>
     <div class="column is-8">
       <div class="field">
-        <input type="checkbox" class="switch" name="readNote" bind:checked={pOpt.readNote}>
+        <input type="checkbox" class="switch" id="readNote" bind:checked={pOpt.readNote}>
         <label for="readNote">{isreadNote}</label>
       </div>
     </div>
   </div>
   <div class="container">
-    <button class="button is-fullwidth is-primary" on:click={childExecution}>{btnText}</button>
+    <button class="button is-fullwidth is-teal" on:click={childExecution}>{btnText}</button>
   </div>
 </div>  

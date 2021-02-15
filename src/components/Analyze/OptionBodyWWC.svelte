@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount, createEventDispatcher } from 'svelte'
-  import { wwcOpt} from '../store/opt'
+  import { wwcOpt} from '../../store/opt'
   
   const dispatch = createEventDispatcher()
   let btnText: string = '実行'
@@ -81,9 +81,4 @@
       </table>
     </div>
   </div>
-
-  <div class="container">
-    <button class="button is-fullwidth is-primary" on:click={childExecution}>{btnText}</button>
-  </div>
-
 </div>

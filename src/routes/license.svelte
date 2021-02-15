@@ -1,4 +1,5 @@
-<h1>ライセンス／ソースコード</h1>
+<div class="content">
+  <h1>ライセンス／ソースコード</h1>
   <section>
     <p><em>CATOVIS Office</em> には以下のライブラリを使用しています。</p>
     <ul>
@@ -33,12 +34,4 @@
       </li>
     </ul>
   </section>
-
-<style>
-
-ul {
-  padding-top: 0.3rem;
-  margin-left: 1rem;
-}
-
-</style>
+</div>

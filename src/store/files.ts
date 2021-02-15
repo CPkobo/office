@@ -17,7 +17,6 @@ function createFileStore() {
         const longerOrder = [...Array(longerNumber).keys()]
         longerOrder.splice(0, shorterNumber)
         self.order.push(...longerOrder)
-        console.log(self)
         return self
       })
     },

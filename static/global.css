@@ -34,3 +34,62 @@ code {
 		font-size: 16px;
 	}
 }
+
+/* customized area */
+header.is-word {
+  background-color: lightblue;
+}
+
+header.is-excel {
+  background-color: lightgreen;
+}
+
+header.is-ppt {
+  background-color: lightsalmon;
+}
+
+tr.is-word {
+  background-color: lightblue;
+}
+
+tr.is-excel {
+  background-color: lightgreen;
+}
+
+tr.is-ppt {
+  background-color: lightsalmon;
+}
+
+td.digit {
+  text-align: right;
+}
+
+span.ins {
+  color: blue;
+  font-weight: bold;
+}
+
+span.del {
+  color: red;
+  text-decoration: line-through;
+  font-size: 0.8em;
+}
+
+nav.is-teal {
+	background-color: teal;
+	color: white
+}
+
+div.is-teal {
+	background-color: teal;
+	color: white
+}
+
+button.is-teal {
+	background-color: teal;
+	color: white
+}
+
+nav#menu {
+	z-index: 10;
+}

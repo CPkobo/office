@@ -2,24 +2,22 @@
   import { goto } from '@sapper/app'
   import { onMount } from 'svelte'
 
-  import { srcs } from '../store/files'
-  import { cxt } from '../store/context'
-  import { FileStats } from '../office-funcs/stats'
-  import { commonOpt, wordOpt, excelOpt, pptOpt, browserOpt } from '../store/opt'
+  import { srcs } from '../../store/files'
+  import { cxt } from '../../store/context'
+  import { FileStats } from '../../office-funcs/stats'
+  import { commonOpt, wordOpt, excelOpt, pptOpt, browserOpt } from '../../store/opt'
 
   let statsList: FileStats[][] = []
   let downURL: string = ''
 
   onMount(() => {
-    console.log(18)
-    console.log($srcs.files.length)
-    if ($srcs.files.length === 0) {
-      goto('/')
-    }
     if ($browserOpt.isAutoDown) {
       downFile()
     }
+    console.log($cxt.getRawContent('src'))
+    console.log($cxt.getRawContent('tgt'))
     statsList = $cxt.getAlignStats()
+    console.log(statsList)
   })
   
   function downFile(): void {
@@ -37,7 +35,6 @@
       link.href = downURL
       link.download = `${$commonOpt.name}.tsv`
       link.click()
-      console.log(39)
     })
   }
   

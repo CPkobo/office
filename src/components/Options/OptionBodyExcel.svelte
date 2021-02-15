@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount, createEventDispatcher } from 'svelte'
-  import { excelOpt } from '../store/opt'
+  import { excelOpt } from '../../store/opt'
   
   const dispatch = createEventDispatcher()
 
@@ -38,7 +38,7 @@
     </div>
     <div class="column is-8">
       <div class="field">
-        <input type="checkbox" class="switch" name="hiddenSheet" bind:checked={xlOpt.readHiddenSheet}>
+        <input type="checkbox" class="switch" id="hiddenSheet" bind:checked={xlOpt.readHiddenSheet}>
         <label for="hiddenSheet">{isReadHidden}</label>
       </div>
     </div>
@@ -50,14 +50,14 @@
     </div>
     <div class="column is-8">
       <div class="field">
-        <input type="checkbox" class="switch" name="filledCell" bind:checked={xlOpt.readFilledCell}>
+        <input type="checkbox" class="switch" id="filledCell" bind:checked={xlOpt.readFilledCell}>
         <label for="filledCell">{isReadFilled}</label>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <button class="button is-fullwidth is-primary" on:click={childExecution}>{btnText}</button>
+    <button class="button is-fullwidth is-teal" on:click={childExecution}>{btnText}</button>
   </div>
     
   </div>  
