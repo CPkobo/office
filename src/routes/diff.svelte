@@ -1,7 +1,9 @@
 <script lang="ts">
   import { applyOpcodes, cnm } from '../office-funcs/util'
 
-  import AdTemplateV from '../components/ads/AdTemplateV.svelte'
+  // import AdTemplateV from '../components/ads/AdTemplateV.svelte'
+  import AdRakutenVertical from '../components/ads/AdRakutenVertical.svelte'
+  import AdRakutenSearch from '../components/ads/AdRakutenSearch.svelte'
   
   let results: string= ''
   let inputing: boolean = true
@@ -44,7 +46,8 @@
     <button class="button is-outlined" on:click={() => tgt = ""}>クリア</button>
   </div>
   <div class="column is-2">
-    <AdTemplateV />
+    <!-- <AdTemplateV /> -->
+    <AdRakutenVertical />
   </div>
 </div>
 {:else}
@@ -55,6 +58,7 @@
 {/if}
 <button class="button" on:click={compare}>比較</button>
 <button class="button" on:click={clearResults}>戻る</button>
+<AdRakutenSearch />
 
 <style>
 textarea {

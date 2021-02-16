@@ -5,7 +5,9 @@
 
 	import AnalyzeBody from '../components/Analyze/AnalyzeBody.svelte'
 	import NgPage from '../components/NgPage.svelte'
-	import AdTemplateV from '../components/ads/AdTemplateV.svelte';
+	import AdRakutenVertical from '../components/ads/AdRakutenVertical.svelte'
+	import AdRakutenSearch from '../components/ads/AdRakutenSearch.svelte'
+	// import AdTemplateV from '../components/ads/AdTemplateV.svelte';
 
 	let pageOk: boolean = false
 
@@ -27,9 +29,11 @@
 			<AnalyzeBody />
 		</div>
 		<div class="column is-3">
-			<AdTemplateV />
+			<!-- <AdTemplateV /> -->
+			<AdRakutenVertical />
 		</div>
 	</div>
 {:else}
 	<NgPage />
 {/if}
+<AdRakutenSearch />

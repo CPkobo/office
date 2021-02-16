@@ -14,11 +14,11 @@
 
 <nav class="panel" id="menu">
   <div class="columns is-teal panel-heading">
-    <div class="column is-10">
-      <p on:click={() => menuOn = !menuOn}>{cursolDirection} CATOVIS Office メニュー<span id="subtitle">{subtitle}</span></p>
+    <div class="column is-two-thirds">
+      <p class="in-nav" on:click={() => menuOn = !menuOn}>{cursolDirection} CATOVIS Office メニュー<span id="subtitle">{subtitle}</span></p>
     </div>
-    <div class="column is-2">
-      <a class="in-nav" href="https://catovis.com">
+    <div class="column is-one-third">
+      <a class="in-nav" id="to-top" href="https://catovis.com">
         CAOTIVSトップへ
       </a>
     </div>
@@ -71,13 +71,26 @@
   {/if}
 </nav>
 
-<style>
-  	a.in-nav {
+<style> 
+  a.in-nav {
+    text-align: right;
+    margin-right: 2rem;
 		text-decoration: none;
 		color: white;
 		font-weight: bold;
 		display: block;
 	}
+
+  .in-nav:hover {
+    text-shadow:1px 1px 1px rgba(255,255,255,.7);
+    transition: all .2s ease-in-out;
+    /* background-color: rgba(0,0,0, 50) ; */
+  }
+
+  a.panel-block:hover {
+    text-shadow:1px 1px 1px rgba(0,0,0,.7);
+    transition: all .2s ease-in-out;
+  }
 
   span#subtitle {
     margin-left: 2rem;

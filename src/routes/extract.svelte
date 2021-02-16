@@ -2,6 +2,8 @@
 	import FileCard from '../components/Files/FileCard.svelte'	
 	import OptionTabs from '../components/Options/OptionTabs.svelte'
 	import AdTemplateV from '../components/ads/AdTemplateV.svelte';
+	import AdRakutenVertical from '../components/ads/AdRakutenVertical.svelte';
+	import AdRakutenSearch from '../components/ads/AdRakutenSearch.svelte';
 </script>
 
 <style>
@@ -17,6 +19,8 @@
 		<OptionTabs mode="extract" />
 	</div>
 	<div class="column is-3">
-		<AdTemplateV />
+		<!-- <AdTemplateV /> -->
+		<AdRakutenVertical />
 	</div>
 </div>
+<AdRakutenSearch />

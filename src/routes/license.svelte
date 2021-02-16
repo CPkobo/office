@@ -30,7 +30,7 @@
   <p>また、<em>CATOVIS Offie</em> は以下のリポジトリでソースコードを公開しています。<br />改変も自由です。</p>
     <ul>
       <li>
-        <a href="https://github.com/CPkobo/catovis-suite-wp" target="_blank">CATOVIS SUITE WP</a>
+        <a href="https://github.com/CPkobo/office" target="_blank">CATOVIS Office</a>
       </li>
     </ul>
   </section>
