@@ -2,8 +2,11 @@
 	import FileCard from '../components/Files/FileCard.svelte'
 	import OptionTabs from '../components/Options/OptionTabs.svelte'
 	// import AdTemplateV from '../components/ads/AdTemplateV.svelte';
+
 	import AdRakutenVertical from '../components/ads/AdRakutenVertical.svelte';
 	import AdRakutenSearch from '../components/ads/AdRakutenSearch.svelte';
+
+	// $: showDiff = $interDiff > -1 
 
 </script>
 

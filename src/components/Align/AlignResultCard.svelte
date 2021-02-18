@@ -2,22 +2,20 @@
   import { goto } from '@sapper/app'
   import { onMount } from 'svelte'
 
-  import { srcs } from '../../store/files'
   import { cxt } from '../../store/context'
+  import { interDiff } from '../../store/controls'
   import { FileStats } from '../../office-funcs/stats'
   import { commonOpt, wordOpt, excelOpt, pptOpt, browserOpt } from '../../store/opt'
 
   let statsList: FileStats[][] = []
   let downURL: string = ''
+  let fordiff: number = 0
 
   onMount(() => {
     if ($browserOpt.isAutoDown) {
       downFile()
     }
-    console.log($cxt.getRawContent('src'))
-    console.log($cxt.getRawContent('tgt'))
     statsList = $cxt.getAlignStats()
-    console.log(statsList)
   })
   
   function downFile(): void {
@@ -42,10 +40,17 @@
     window.localStorage.setItem('src-context', JSON.stringify($cxt.getRawContent('src')))
     window.localStorage.setItem('tgt-context', JSON.stringify($cxt.getRawContent('tgt')))
   }
+
+  function setInterDiff(): void {
+    if ($interDiff.show) {
+      $interDiff.show = false
+      $interDiff.index = -1
+    } else {
+      $interDiff.show = true
+      $interDiff.index = fordiff
+    }
+  }
   
-  // function resetAlignContext(): void {
-  //   this.$store.commit('fileIO/resetAlignContext')
-  // }
 </script>
 
 <div class="card p-5 m-5">
@@ -62,6 +67,7 @@
           <th colspan="2">段落｜シート｜スライド</th>
           <th colspan="2">表組｜テキストボックス｜ノート</th>
           <th colspan="2">その他</th>
+          <th>比較</th>
         </tr>
       </thead>
       <tbody>
@@ -80,23 +86,16 @@
           <td class="digit">{ spair[1].doc_table + spair[1].xl_shape + spair[1].ppt_note}</td>
           <td class="digit">{ spair[0].ppt_dgm }</td>
           <td class="digit">{ spair[1].ppt_dgm }</td>
+          <td><input type="radio" class="radio" name="fordiff" bind:group={fordiff} value={idx}></td>
         </tr>
         {/each}
       </tbody>
-    <!-- <tbody>
-      <tr>
-        <td>合計</td>
-        <td class="digit">{ wordTotal } 単語</td>
-        <td class="digit">{ charaTotal } 文字</td>
-      </tr>
-    </tbody> -->
     </table>
   </section>
   <section class="card-footer">
     <button class="button card-footer-item" on:click={downFile}>TSV ダウンロード</button>
     <button class="button card-footer-item" on:click={saveInBrowser}>ブラウザに保存</button>
-    <!-- <button class="button card-footer-item" on:click={recalc}>再計算</button> -->
-    <!-- <button class="button card-footer-item" on:click={recalc}>分析へ&gt;&gt;</button> -->
+    <button class="button card-footer-item" on:click={setInterDiff}>ファイル間　差分</button>
     <button class="button card-footer-item" on:click={() => goto('/')}>戻る</button>
   </section>
 </div>

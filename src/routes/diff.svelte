@@ -12,6 +12,16 @@
   const difflib = require('difflib')
   const seq = new difflib.SequenceMatcher(null, '', '')
 
+  $: btnText = inputing ? '比較' : '戻る'
+
+  function handleCompareOrBack() {
+    if (inputing) {
+      compare()
+    } else {
+      clearResults()
+    }
+  }
+
   function clearResults() {
     results = ''
     inputing = true
@@ -25,7 +35,6 @@
     clearResults()
     const src_ = sanitize(src)
     const tgt_ = sanitize(tgt)
-    console.log(src_)
     seq.setSeq1(tgt_)
     seq.setSeq2(src_)
     const opcodes: Opcode[] = seq.getOpcodes()
@@ -56,8 +65,7 @@
   <!-- <pre class="diff-res">{@html results}</pre> -->
 </div>
 {/if}
-<button class="button" on:click={compare}>比較</button>
-<button class="button" on:click={clearResults}>戻る</button>
+<button class="button" on:click={handleCompareOrBack}>{btnText}</button>
 <AdRakutenSearch />
 
 <style>
