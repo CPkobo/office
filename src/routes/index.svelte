@@ -1,31 +1,31 @@
 <script lang="ts">
-  import CatovisLogo from '../components/CatovisLogo.svelte';
-  let description: string = '項目を選択してください'
-  function writeDescription(target) {
-    switch (target) {
-      case 'extract':
-        description = 'Word / Excel / PPT からテキストを抽出し、文字数をカウントします'
-        break;
-      case 'align':
-        description = '原文・訳文のWord / Excel / PPT からテキストを抽出し、対訳表を作成します'
-        break;
-      case 'analyze':
-        description = '抽出をしたテキストについて、類似の文が出現する割合を計算します'
-        break;
-      case 'regexp':
-        description = '文の区切りや、読み込みをスキップするための正規表現を検証します'
-        break;
-      case 'diff':
-        description = '2つの文章の相違点を文字単位で表示します'
-        break;
-      case 'license':
-        description = 'CATOVIS Officeに使用しているツールのライセンスです'
-        break;
-      default:
-        description = '項目を選択してください'
-        break;
-    }
+import CatovisLogo from '../components/CatovisLogo.svelte';
+let description: string = '項目を選択してください'
+function writeDescription(target) {
+  switch (target) {
+    case 'extract':
+      description = 'Word / Excel / PPT からテキストを抽出し、文字数をカウントします'
+      break;
+    case 'align':
+      description = '原文・訳文のWord / Excel / PPT からテキストを抽出し、対訳表を作成します'
+      break;
+    case 'analyze':
+      description = '抽出をしたテキストについて、類似の文が出現する割合を計算します'
+      break;
+    case 'regexp':
+      description = '文の区切りや、読み込みをスキップするための正規表現を検証します'
+      break;
+    case 'diff':
+      description = '2つの文章の相違点を文字単位で表示します'
+      break;
+    case 'license':
+      description = 'CATOVIS Officeに使用しているツールのライセンスです'
+      break;
+    default:
+      description = '項目を選択してください'
+      break;
   }
+}
 </script>
 
 <div class="content">

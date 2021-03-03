@@ -1,13 +1,17 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import { commonOpt } from '../../store/opt'
-  import { ReadingOption } from '../../office-funcs/option'
-  import { applySegRules } from '../../office-funcs/util'
+import { onMount } from 'svelte'
+import { commonOpt } from '../../store/opt'
+import { ReadingOption } from '../../office-funcs/option'
+import { applySegRules } from '../../office-funcs/util'
+import RegErrorBlock from './RegErrorBlock.svelte'
 
   
   let result: string[] = []
   let delimiters: string = ''
   let text: string = ''
+  let message: string = ''
+  
+  $: regErr = message !== ''
 
   onMount(() => {
     delimiters = $commonOpt.delimiters
@@ -17,9 +21,13 @@
     const opq: OptionQue = {common: $commonOpt}
     opq.common.name = 'SegmentationTest'
     const opt = new ReadingOption(opq)
-    const blank = new RegExp('^\\s*$')
-    result = applySegRules([text], opt).filter(val => !(blank.test(val)))
-    console.log(result)
+    try {
+      const blank = new RegExp('^\\s*$')
+      result = applySegRules([text], opt).filter(val => !(blank.test(val)))
+      console.log(result)
+    } catch (e) {
+      message = e.message
+    }
   }
   
   function applyStore() {
@@ -37,6 +45,9 @@
       <button class="button m-2" on:click={execSegmentaion}>分割実行</button>
       <button class="button m-2" on:click={applyStore}>設定反映</button>
       <p>※ 分割の結果、空白文字のみになったセグメントは無視されます</p>
+      {#if regErr}
+        <RegErrorBlock {message} />
+      {/if}
     </div>
     <div class="column is-two-thirds p-5">
       <textarea class="textarea" rows="20" bind:value={text} />

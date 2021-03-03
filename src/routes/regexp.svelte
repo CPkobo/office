@@ -1,9 +1,9 @@
 <script>
-	import SegPlayground from '../components/Reg/SegPlayground.svelte'	
-	import ExclusionPlayground from '../components/Reg/ExclusionPlayground.svelte'
-	// import AdTemplateV from '../components/ads/AdTemplateV.svelte';	
-	import AdRakutenVertical from '../components/ads/AdRakutenVertical.svelte';
-	import AdRakutenSearch from '../components/ads/AdRakutenSearch.svelte';
+import SegPlayground from '../components/Reg/SegPlayground.svelte'	
+import ExclusionPlayground from '../components/Reg/ExclusionPlayground.svelte'
+import AdRakutenVertical from '../components/ads/AdRakutenVertical.svelte';
+import FooterAdSet from '../components/ads/FooterAdSet.svelte';
+import AdColumn from '../components/ads/AdColumn.svelte';
 </script>
 
 <style>
@@ -18,9 +18,6 @@
 		<SegPlayground />
 		<ExclusionPlayground />
 	</div>
-	<div class="column is-3">
-		<!-- <AdTemplateV /> -->
-		<AdRakutenVertical />
-	</div>
+	<AdColumn />
 </div>
-<AdRakutenSearch />
+<FooterAdSet />

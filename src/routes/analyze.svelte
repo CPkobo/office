@@ -1,21 +1,20 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
+import { onMount } from 'svelte'
 
-	import { cxt } from '../store/context'
+import { cxt } from '../store/context'
 
-	import AnalyzeBody from '../components/Analyze/AnalyzeBody.svelte'
-	import NgPage from '../components/NgPage.svelte'
-	import AdRakutenVertical from '../components/ads/AdRakutenVertical.svelte'
-	import AdRakutenSearch from '../components/ads/AdRakutenSearch.svelte'
-	// import AdTemplateV from '../components/ads/AdTemplateV.svelte';
+import AnalyzeBody from '../components/Analyze/AnalyzeBody.svelte'
+import NgPage from '../components/NgPage.svelte'
+import FooterAdSet from '../components/ads/FooterAdSet.svelte'
+import AdColumn from '../components/ads/AdColumn.svelte'
 
-	let pageOk: boolean = false
+let pageOk: boolean = false
 
-	onMount(() => {
-		if ($cxt.getRawContent('src') !== null) {
-			pageOk = true
-		}
-	})
+onMount(() => {
+	if ($cxt.getRawContent('src') !== null) {
+		pageOk = true
+	}
+})
 
 </script>
 
@@ -28,12 +27,9 @@
 		<div class="column is-9">
 			<AnalyzeBody />
 		</div>
-		<div class="column is-3">
-			<!-- <AdTemplateV /> -->
-			<AdRakutenVertical />
-		</div>
+		<AdColumn />
 	</div>
 {:else}
 	<NgPage />
 {/if}
-<AdRakutenSearch />
+<FooterAdSet />

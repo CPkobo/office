@@ -1,27 +1,36 @@
 
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import { commonOpt } from '../../store/opt'
+import { onMount } from 'svelte'
+import { commonOpt } from '../../store/opt'
+import RegErrorBlock from './RegErrorBlock.svelte'
 
   let exPattern: string = ''
   let texts: string[] = ['', '', '', '', '', ]
   let results: string[] = ['', '', '', '', '', ]
-      
+  let message: string = ''
+  
+  $: regErr = message !== ''
+
   onMount(() => {
     exPattern = $commonOpt.excludePattern
   }) 
      
   function execExclusion() {
-    const ex = new RegExp(exPattern)
-    results = ['', '', '', '', '', ]
-    for (let i = 0; i < texts.length; i++) {
-      if (texts[i] === '') {
-        continue
-      } else if (ex.test(texts[i])) {
-        results[i] = '除外されます'
-      } else {
-        results[i] = '除外されません'
+    message = ''
+    try {
+      const ex = new RegExp(exPattern)
+      results = ['', '', '', '', '', ]
+      for (let i = 0; i < texts.length; i++) {
+        if (texts[i] === '') {
+          continue
+        } else if (ex.test(texts[i])) {
+          results[i] = '除外されます'
+        } else {
+          results[i] = '除外されません'
+        }
       }
+    } catch (e) {
+      message = e.message
     }
   }
 
@@ -44,6 +53,9 @@
       <button class="button m-2" on:click={execExclusion}>除外実行</button>
       <button class="button m-2" on:click={applyStore}>設定反映</button>
       <button class="button m-2" on:click={test}>設定反映</button>
+      {#if regErr}
+        <RegErrorBlock {message} />
+      {/if}
     </div>
     <div class="column p-5 is-two-thirds">
       <table class="table is-narrow">

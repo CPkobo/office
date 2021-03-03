@@ -1,13 +1,8 @@
 <script>
-	import FileCard from '../components/Files/FileCard.svelte'
-	import OptionTabs from '../components/Options/OptionTabs.svelte'
-	// import AdTemplateV from '../components/ads/AdTemplateV.svelte';
-
-	import AdRakutenVertical from '../components/ads/AdRakutenVertical.svelte';
-	import AdRakutenSearch from '../components/ads/AdRakutenSearch.svelte';
-
-	// $: showDiff = $interDiff > -1 
-
+import FileCard from '../components/Files/FileCard.svelte'
+import OptionTabs from '../components/Options/OptionTabs.svelte'
+import FooterAdSet from '../components/ads/FooterAdSet.svelte';
+import AdColumn from '../components/ads/AdColumn.svelte';
 </script>
 
 <style>
@@ -25,8 +20,6 @@
 		<FileCard isSrcOrTgt="tgt" />
 		<OptionTabs mode="align" />
 	</div>
-	<div class="column is-3">
-		<AdRakutenVertical />
-	</div>
+	<AdColumn />
 </div>
-<AdRakutenSearch />
+<FooterAdSet />
