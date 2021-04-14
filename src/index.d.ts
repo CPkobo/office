@@ -1,3 +1,16 @@
+declare type ClassifiedFormat = 'is-word' | 'is-excel' | 'is-ppt' | ''
+
+declare type CountType = 'unit' | 'chara'
+
+// CAT
+declare type CatDataType = 'XLIFF' | 'TMX' | 'TBX' | ''
+
+declare interface TranslationUnit {
+  lang: string,
+  text: string,
+}
+
+
 // extract
 declare interface ExtractedContent {
   name: string;
