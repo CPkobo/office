@@ -1,12 +1,11 @@
 {
   "name": "CATOVIS_OFFICE",
   "description": "A series of PWA tools for translators",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build",
     "export": "sapper export",
-    "gen": "sapper export --basepath /sapp",
     "start": "node __sapper__/build",
     "validate": "svelte-check --ignore src/node_modules/@sapper"
   },

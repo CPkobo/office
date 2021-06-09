@@ -1,5 +1,6 @@
 <script lang="ts">
 import CatovisLogo from '../components/CatovisLogo.svelte';
+
 let description: string = '項目を選択してください'
 function writeDescription(target) {
   switch (target) {
@@ -62,4 +63,7 @@ function writeDescription(target) {
   </div>
 </div>
 
+<!-- <a href="test">
+  <CatovisLogo />
+</a> -->
 <CatovisLogo />
