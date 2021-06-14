@@ -45,6 +45,7 @@
         ppt: $pptOpt
       }
       blobContentsReader($srcs.files, $srcs.order, opq).then((exConts: ExtractedContent[]) => {
+        console.log(opq.ppt)
         $cxt.readContent(exConts)
         // console.log($cxt.getRawContent('src'))
         goto('result_extract')

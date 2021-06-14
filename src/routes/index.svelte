@@ -1,5 +1,6 @@
 <script lang="ts">
 import CatovisLogo from '../components/CatovisLogo.svelte';
+import { getVer } from '../office-funcs/util'
 
 let description: string = '項目を選択してください'
 function writeDescription(target) {
@@ -30,7 +31,8 @@ function writeDescription(target) {
 </script>
 
 <div class="content">
-  <h1>CATOVIS Office スタートページ</h1>
+  <h1>CATOVIS Office スタートページ </h1>
+  <h2>【Ver. {getVer()} 】</h2>
   <p>上部メニューバーの「メニュー」をクリックするか、下記のリストから実行したい処理を選んでください</p>
   <ul>
     <li 

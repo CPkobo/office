@@ -8,6 +8,7 @@
   let pOpt: PptOption = {};
   
   onMount(() => {
+    pOpt.readSlide = $pptOpt.readSlide
     pOpt.readNote = $pptOpt.readNote
   })
 
@@ -15,6 +16,7 @@
     setOptions()
   })
 
+  $: isreadSlide = pOpt.readSlide ? '読み込む' : '読み込まない'
   $: isreadNote = pOpt.readNote ? '読み込む' : '読み込まない'
   
   function setOptions(): void {
@@ -30,6 +32,17 @@
 </script>
 
 <div class="container is-ppt p-5">
+  <div class="columns">
+    <div class="column is-4 lbl">
+      <p>スライド</p>
+    </div>
+    <div class="column is-8">
+      <div class="field">
+        <input type="checkbox" class="switch" id="readSlide" bind:checked={pOpt.readSlide}>
+        <label for="readSlide">{isreadSlide}</label>
+      </div>
+    </div>
+  </div>
   <div class="columns">
     <div class="column is-4 lbl">
       <p>ノート</p>

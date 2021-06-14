@@ -110,7 +110,8 @@ declare interface ExcelOption {
 }
 
 declare interface PptOption {
-  readNote?: boolean
+  readSlide? : boolean;
+  readNote?: boolean;
 }
 
 declare interface OptionQue {
@@ -130,6 +131,7 @@ declare interface OptionQue {
     readFilledCell?: boolean;
   }
   ppt?: {
+    readSlide? : boolean;
     readNote?: boolean;
   }
 }
@@ -184,7 +186,7 @@ declare interface TovisMeta {
 // t: Translation
 // m: Machine Translation or Memory, meaning a non-confirmed translation
 // d: Diff data
-// c: COmments
+// c: Comments
 declare interface TovisBlock {
   s: string;
   t: string;
