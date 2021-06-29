@@ -1,19 +1,24 @@
+import { SequenceMatcher } from './sequenceMatcher'
 import { countCharas, countWords} from './util';
 
 export class DiffInfoBrowser {
   public dsegs: DiffSeg[];
-  public d: any;
+  public d: SequenceMatcher;
   public report: WWCReport | undefined;
   public marks: RegExp;
   public spaces: RegExp;
+  protected isDigit: RegExp;
 
   constructor() {
     const dsegs: DiffSeg[] = [];
     this.dsegs = dsegs;
-    const difflib = require('difflib');
-    this.d = new difflib.SequenceMatcher(null, '', '');
+    // const difflib = require('difflib');
+    // this.d = new difflib.SequenceMatcher(null, '', '');
+    this.d = new SequenceMatcher();
+    this.d.setDefaultDirection('B2A')
     this.marks = new RegExp('(\\,|\\.|:|;|\\!|\\?|\\s)+', 'g');
     this.spaces = new RegExp('\\s+', 'g');
+    this.isDigit = new RegExp('^[\\d\\. ]+$');
   }
 
   public analyze(cons: ExtractedContent[], adding?: boolean): void {
@@ -43,8 +48,7 @@ export class DiffInfoBrowser {
     if (this.dsegs.length === 0) {
       return;
     }
-    const rate: WWCRate = wordWeight !== undefined ?
-      wordWeight :
+    const rate: WWCRate = wordWeight !== undefined ? wordWeight :
       {
         dupli: 1,
         over95: 1,
@@ -236,19 +240,33 @@ export class DiffInfoBrowser {
   }
 
   protected addDseg(pid: number, gid: number, file: string, st: string, tt: string) {
-    const sims = this.calcRatio(st);
-    const diff: DiffSeg = {
-      pid,
-      gid,
-      file,
-      st,
-      tt,
-      len: countCharas(st),
-      sims: sims.sims,
-      max: sims.max,
-      maxp: sims.maxp,
-    };
-    this.dsegs.push(diff);
+    if (this.isDigit.test(st)) {
+      this.dsegs.push({
+        pid,
+        gid,
+        file,
+        st,
+        tt,
+        len: st.length,
+        sims: [],
+        max: -1,
+        maxp: -1,
+      });
+    } else {
+      const sims = this.calcRatio(st);
+      const diff: DiffSeg = {
+        pid,
+        gid,
+        file,
+        st,
+        tt,
+        len: countCharas(st),
+        sims: sims.sims,
+        max: sims.max,
+        maxp: sims.maxp,
+      };
+      this.dsegs.push(diff);
+    }
   }
 
   protected calcRatio(st: string): Calcresult {
@@ -256,16 +274,20 @@ export class DiffInfoBrowser {
     const lBound = 0.65;
     const ratioLimit = 51;
     const sims: SimilarSegment[] = [];
-    this.d.setSeq1(st);
+    // this.d.setSeq1(st);
+    // seq2 の方が計算量が多いため、こちらに新しい原文をセットすることで計算量を減らす
+    this.d.setSeq2(st);
     let max = 0;
     let maxp = 0;
+    const upperLen = st.length * uBound;
+    const lowerLen = st.length * lBound;
 
     for (const seg of this.dsegs) {
-      const lenDistance = seg.len / st.length;
-      if (lenDistance > uBound || lenDistance < lBound) {
+      // 割り算を減らして高速化
+      if (upperLen < seg.len || lowerLen > seg.len) {
         continue;
       }
-      this.d.setSeq2(seg.st);
+      this.d.setSeq1(seg.st);
       const r = Math.floor(this.d.ratio() * 100);
       if (r > max) {
         max = r;

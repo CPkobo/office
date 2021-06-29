@@ -12,7 +12,6 @@
 
   onMount(() => {
     if ($cxt.getRawContent('src') === null) {
-      console.log('here')
       goto('/')
     } else {
       indexes = index2Range($cxt.getContentsLength('src'))

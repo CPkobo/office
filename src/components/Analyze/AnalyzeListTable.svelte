@@ -3,7 +3,7 @@
 
   import { cxt, priorityVer } from '../../store/context'
 
-  import { index2Range } from '../../office-funcs/util'
+  import { index2Range, path2Format } from '../../office-funcs/util'
 
   let ver: number = 0
   let contentsLength = 0
@@ -56,7 +56,7 @@
       >
         <td>{index + 1}</td>
         <td>{cons[index].name}</td>
-        <td>{cons[index].name.lastIndexOf('.')}</td>
+        <td>{path2Format(cons[index].name)}</td>
         <td on:click={() => fileUp(index)}>↑</td>
         <td on:click={() => fileDown(index)}>↓</td>
       </tr>

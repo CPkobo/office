@@ -30,14 +30,19 @@
     }
   }
 
-  function downReport(format: 'json' | 'human') {
+  function downReport(format: 'json' | 'human' | 'min') {
     if (format === 'json') {
       const result = $df.exportResult('diff', format)
       downFile(result, 'json')
     } else {
       $tvs.parseFromObj($df).then(() => {
-        const result = $tvs.dump()
-        downFile(result.join('\n'), 'tovis')
+        if (format === 'human') {
+          const result = $tvs.dump()
+          downFile(result.join('\n'), 'tovis')
+        } else {
+          const result = $tvs.dumpMinify('CHECK-DUPLI')
+          downFile(result.join('\n'), 'mtovis')
+        }
       })
     }
   }
@@ -77,6 +82,7 @@
       <button class="button card-footer-item" on:click={() => downCount('human')}>カウント(TSV)</button>
       <button class="button card-footer-item" on:click={() => downCount('json')}>カウント(JSON)</button>
       <button class="button card-footer-item" on:click={() => downReport('human')}>詳細(TOVIS)</button>
+      <button class="button card-footer-item" on:click={() => downReport('min')}>圧縮版詳細(Min-TOVIS)</button>
       <button class="button card-footer-item" on:click={() => downReport('json')}>詳細(JSON)</button>
     </section>
   {/if}
