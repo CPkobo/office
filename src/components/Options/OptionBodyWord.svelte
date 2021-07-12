@@ -18,8 +18,8 @@
     setOptions()
   })
 
-  $: isafterRev1 = wdOpt1.afterRev ? '修正前' : '修正後'
-  $: isafterRev2 = wdOpt2.afterRev ? '修正前（訳文）' : '修正後（訳文）'
+  $: isafterRev1 = wdOpt1.afterRev ? '修正後' : '修正前'
+  $: isafterRev2 = wdOpt2.afterRev ? '修正後（訳文）' : '修正前（訳文）'
 
   function setOptions(): void {
     wordOpt.set(wdOpt1)
