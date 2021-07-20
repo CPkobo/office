@@ -9,17 +9,28 @@
   import ContentCard from './ExtractDetailedCard.svelte'
   
   let indexes: number[] = [0]
+  let steped: number[] = []
+  let limit: number = 0
 
   onMount(() => {
     if ($cxt.getRawContent('src') === null) {
       goto('/')
     } else {
       indexes = index2Range($cxt.getContentsLength('src'))
+      limit = indexes.length - 1
+      steped = indexes.filter((val) => {
+        return val % 2 === 0
+      })
     }
   })
 
 </script>
 
-{#each indexes as index}
-  <ContentCard {index} />
+{#each steped as sx}
+<div class="columns">
+  <ContentCard index={sx} />
+  {#if sx + 1 <= limit}
+    <ContentCard index={sx + 1} />
+  {/if}
+</div>
 {/each}

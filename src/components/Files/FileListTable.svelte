@@ -27,10 +27,14 @@
     if (isSrcOrTgt === 'src') {
       if (index === $srcs.order.length) {
         return 
+      } else {
+        srcs.fileDown(index)
       }
     } else {
       if (index === $tgts.order.length) {
         return
+      } else {
+        tgts.fileDown(index)
       }
     }
   }
@@ -45,15 +49,12 @@
 </script>
 
 
-<table class="table is-fullwidth is-narrow">
+<table class="table is-fullwidth">
   <thead>
     <tr>
       <th>番号</th>
       <th>ファイル名</th>
       <th>拡張子</th>
-      <!-- <th colspan="3" style="text-align: right">
-        <button class="button is-small is-danger" on:click={fileReset}>リセット</button>
-      </th> -->
     </tr>
   </thead>
   <tbody>
@@ -66,9 +67,9 @@
         <td>{idx + 1}</td>
         <td>{isWhich.files[ox].name}</td>
         <td>{path2Format(isWhich.files[ox].name)}</td>
-        <td on:click={() => fileUp(idx)}>↑</td>
-        <td on:click={() => fileDown(idx)}>↓</td>
-        <td on:click={() => fileRemove(idx)}>×</td>
+        <td><button class="button is-small" on:click={() => fileUp(idx)}>↑</button>
+        <td><button class="button is-small" on:click={() => fileDown(idx)}>↓</button>
+        <td><button class="button is-small is-danger is-outlined" on:click={() => fileRemove(idx)}>×</button>
       </tr>
     {/each}
   </tbody>

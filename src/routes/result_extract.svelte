@@ -24,12 +24,12 @@ onMount(() => {
 {#if pageOk}
   <div class="columns">
     <div class="column is-9">
-      <ExtractControls />
       {#if !$showDetailedExtract}
         <ExtractSimpleResult />
       {:else}
         <ExtractDetailedResult />
       {/if}
+      <ExtractControls />
     </div>
     <AdColumn />
   </div>

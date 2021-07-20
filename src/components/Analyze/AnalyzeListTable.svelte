@@ -10,7 +10,6 @@
   let indexes: number[] = []
   let cons: ExtractedContent[];
   
-
   onMount(() => {
     ver = $priorityVer
     contentsLength = $cxt.getContentsLength('src')
@@ -23,6 +22,7 @@
       return
     } else {
       $cxt.changeFilePriority('src', index, -1)
+      cons = $cxt.getRawContent('src')
       // $priorityVer++
     }
   }
@@ -32,6 +32,7 @@
       return
     } else {
       $cxt.changeFilePriority('src', index, 1)
+      cons = $cxt.getRawContent('src')
       // $priorityVer++
     }
   }
@@ -57,8 +58,8 @@
         <td>{index + 1}</td>
         <td>{cons[index].name}</td>
         <td>{path2Format(cons[index].name)}</td>
-        <td on:click={() => fileUp(index)}>↑</td>
-        <td on:click={() => fileDown(index)}>↓</td>
+        <td><button class="button is-small" on:click={() => fileUp(index)}>↑</button></td>
+        <td><button class="button is-small" on:click={() => fileDown(index)}>↓</button></td>
       </tr>
     {/each}
   </tbody>

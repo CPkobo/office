@@ -11,6 +11,9 @@ function writeDescription(target) {
     case 'align':
       description = '原文・訳文のWord / Excel / PPT からテキストを抽出し、対訳表を作成します'
       break;
+    case 'mtovis':
+      description = 'ファイル内の重複・類似箇所を簡単に確認するためのファイル（mtovis）を作成します。CATOVIS Word VBAで読み込み可能です'
+      break;
     case 'analyze':
       description = '抽出をしたテキストについて、類似の文が出現する割合を計算します'
       break;
@@ -43,6 +46,10 @@ function writeDescription(target) {
       on:mouseenter={() => writeDescription('align')}
       on:mouseleave={() => writeDescription('')}
     ><a href="/align">対訳表作成</a></li>
+    <li
+      on:mouseenter={() => writeDescription('mtovis')}
+      on:mouseleave={() => writeDescription('')}
+    ><a href="/mtovis">重複箇所 簡易確認</a></li>
     <li
       on:mouseenter={() => writeDescription('regexp')}
       on:mouseleave={() => writeDescription('')}

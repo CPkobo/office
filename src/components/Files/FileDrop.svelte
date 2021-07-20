@@ -4,7 +4,7 @@
 
   import { path2Format } from '../../office-funcs/util'
 
-  export let isSrcOrTgt;
+  export let isSrcOrTgt: string;
 
   const allowedFormat = [ 'docx', 'docm', 'xlsx', 'xlsm', 'pptx', 'pptm']
   let isEnter = false;
@@ -32,7 +32,8 @@
   }
 
   function divClick(): void {
-    document.getElementById('upload_file').click()
+    const inputId = `upload_file_${isSrcOrTgt}`
+    document.getElementById(inputId).click()
   }
 
   function fileRegister(fileList: FileList) {

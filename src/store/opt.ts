@@ -8,7 +8,8 @@ const word2: WordOption = {
 
 const browserOption = {
   isAutoDown: true,
-  use1st: common.name === '',
+  hasAd: true,
+  // use1st: common.name === '',
 }
 
 const defaultWWC: WWCRate = {

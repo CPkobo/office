@@ -31,12 +31,6 @@
     wwcOpt.set(wwc)
   }
 
-  function childExecution(): void {
-    setOptions()
-    btnText = '読み込み中...'
-    dispatch('execute')
-  }
-
 </script>
 
 <div class="container p-5">
@@ -55,27 +49,27 @@
         <tbody>
           <tr>
             <td>100%</td>
-            <td><input class="input is-small" type="number" bind:value={wwc.dupli} /></td>
+            <td><input class="input is-small" type="number" bind:value={wwc.dupli} on:change={setOptions}/></td>
           </tr>
           <tr>
             <td>95-99%</td>
-            <td><input class="input is-small" type="number" bind:value={wwc.over95} /></td>
+            <td><input class="input is-small" type="number" bind:value={wwc.over95} on:change={setOptions}/></td>
           </tr>
           <tr>
             <td>85-94%</td>
-            <td><input class="input is-small" type="number" bind:value={wwc.over85} /></td>
+            <td><input class="input is-small" type="number" bind:value={wwc.over85} on:change={setOptions}/></td>
           </tr>
           <tr>
             <td>75-84%</td>
-            <td><input class="input is-small" type="number" bind:value={wwc.over75} /></td>
+            <td><input class="input is-small" type="number" bind:value={wwc.over75} on:change={setOptions}/></td>
           </tr>
           <tr>
             <td>50-74%</td>
-            <td><input class="input is-small" type="number" bind:value={wwc.over50} /></td>
+            <td><input class="input is-small" type="number" bind:value={wwc.over50} on:change={setOptions}/></td>
           </tr>
           <tr>
             <td>~49%</td>
-            <td><input class="input is-small" type="number" bind:value={wwc.under49} /></td>
+            <td><input class="input is-small" type="number" bind:value={wwc.under49} on:change={setOptions}/></td>
           </tr>
         </tbody>
       </table>

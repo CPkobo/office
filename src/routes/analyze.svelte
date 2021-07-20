@@ -19,7 +19,7 @@ onMount(() => {
 </script>
 
 <svelte:head>
-	<title>CATOVIS Office | テキスト抽出・対訳作成・文字数解析 etc...</title>
+	<title>CATOVIS Office | テキスト抽出・対訳表作成・文字数解析 etc...</title>
 </svelte:head>
 
 {#if pageOk}

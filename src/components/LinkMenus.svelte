@@ -37,6 +37,12 @@ import { fade } from 'svelte/transition'
         </span>
         対訳表作成 | Alignment
       </a>
+      <a class="panel-block" href="/mtovis" on:click={() => changeSubtitle('重複箇所 簡易確認')}>
+        <span class="panel-icon">
+          <i class="fas fa-book" aria-hidden="true"></i>
+        </span>
+        重複箇所 簡易確認 | Check Duplications
+      </a>
       <a class="panel-block" href="/analyze" on:click={() => changeSubtitle('解析')}>
         <span class="panel-icon">
           <i class="fas fa-book" aria-hidden="true"></i>

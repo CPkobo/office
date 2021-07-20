@@ -87,33 +87,35 @@
 
 </script>
 
-<div class="columns">
-  <div class="column block is-one-third has-text-center ml-1">
-    <section class="box ctrl-box">
-      <h3 class="subtitle is-5">ダウンロード</h3>
-      <button class="button ma-1 is-light" on:click={downFile}>抽出結果</button>
-      <button class="button ma-1 is-light" on:click={() => downCounts('chara')}>文字数一覧</button>
-      <button class="button ma-1 is-light" on:click={() => downCounts('word')}>単語数一覧</button>
-    </section>
-  </div>
-  <div class="column block is-one-third has-text-center ml-1">
-    <section class="box ctrl-box">
-      <h3 class="subtitle is-5">詳細</h3>
-      <button class="button ma-1 is-light" on:click={showDetailed}>カウント詳細</button>
-      <button class="button ma-1 is-light" on:click={() => goto('/analyze')}>類似解析</button>    
-    </section>
-  </div>
-  <div class="column block is-one-third has-text-center ml-1">
-    <section class="box ctrl-box">
-      <h3 class="subtitle is-5">その他</h3>
-      <button class="button ma-1 is-light" on:click={saveInBrowser}>ブラウザに保存</button>
-      <button class="button ma-1" on:click={() => goto('/')}>戻る</button>
-    </section>
-  </div>
+<div class="card p-5 m-5">
+  <section class="card-content">
+    <div class="columns">
+      <div class="column is-one-third has-text-center ml-3">
+        <section class="box ctrl-box">
+          <h3 class="subtitle is-5">ダウンロード</h3>
+          <button class="button ml-2 is-dark" on:click={downFile}>抽出結果</button>
+          <button class="button ml-2 is-dark" on:click={() => downCounts('chara')}>文字数一覧</button>
+          <button class="button ml-2 is-dark" on:click={() => downCounts('word')}>単語数一覧</button>
+        </section>
+      </div>
+      <div class="column block is-one-third has-text-center ml-3">
+        <section class="box">
+          <h3 class="subtitle is-5">結果詳細</h3>
+          <button class="button ml-2 is-dark" on:click={showDetailed}>詳細表示</button>
+          <button class="button ml-2 is-dark" on:click={() => goto('/analyze')}>解析へ</button>
+          <button class="button ml-2 is-dark" on:click={saveInBrowser}>ブラウザに保存</button>
+        </section>
+      </div>
+    </div>
+    
+  </section>
+  <section class="card-footer">
+    <button class="button card-footer-item ml-2" on:click={() => goto('/')}>戻る</button>
+  </section>
 </div>
 
 <style>
-    section.ctrl-box {
+  section.ctrl-box {
     background-color: rgba(0,128,128,0.3);
     transition: all 0.3s;
   }

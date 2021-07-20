@@ -16,8 +16,8 @@
     setOptions()
   })
 
-  $: isReadHidden = xlOpt.readHiddenSheet ? '読み込む' : '読み込まない'
-  $: isReadFilled = xlOpt.readFilledCell ? '読み込む' : '読み込まない'
+  // $: isReadHidden = xlOpt.readHiddenSheet ? '読み込む' : '読み込まない'
+  // $: isReadFilled = xlOpt.readFilledCell ? '読み込む' : '読み込まない'
 
   function setOptions(): void {
     excelOpt.set(xlOpt)
@@ -32,26 +32,30 @@
 </script>
 
 <div class="container is-excel p-5">
-  <div class="columns">
-    <div class="column is-4 lbl">
-      <p>非表示シート</p>
+  <div class="columns mt-2">
+    <div class="column is-4 lbl has-text-right">
+      <h3 class="subtitle is-5">非表示シート</h3>
     </div>
-    <div class="column is-8">
+    <div class="column is-8 ml-3">
       <div class="field">
-        <input type="checkbox" class="switch" id="hiddenSheet" bind:checked={xlOpt.readHiddenSheet}>
-        <label for="hiddenSheet">{isReadHidden}</label>
+        <button class="button" class:is-focused={xlOpt.readHiddenSheet} on:click={() => {xlOpt.readHiddenSheet = true}}>読み込む</button>
+        <button class="button" class:is-focused={!xlOpt.readHiddenSheet} on:click={() => {xlOpt.readHiddenSheet = false}}>読み込まない</button>  
+        <!-- <input type="checkbox" class="switch" id="hiddenSheet" bind:checked={xlOpt.readHiddenSheet}>
+        <label for="hiddenSheet">{isReadHidden}</label> -->
       </div>
     </div>
   </div>
 
-  <div class="columns">
-    <div class="column is-4 lbl">
-      <p>色付きセル</p>
+  <div class="columns mt-3">
+    <div class="column is-4 lbl has-text-right">
+      <h3 class="subtitle is-5">色付きセル</h3>
     </div>
-    <div class="column is-8">
+    <div class="column is-8 ml-3">
       <div class="field">
-        <input type="checkbox" class="switch" id="filledCell" bind:checked={xlOpt.readFilledCell}>
-        <label for="filledCell">{isReadFilled}</label>
+        <button class="button" class:is-focused={xlOpt.readFilledCell} on:click={() => {xlOpt.readFilledCell = true}}>読み込む</button>
+        <button class="button" class:is-focused={!xlOpt.readFilledCell} on:click={() => {xlOpt.readFilledCell = false}}>読み込まない</button>  
+        <!-- <input type="checkbox" class="switch" id="filledCell" bind:checked={xlOpt.readFilledCell}>
+        <label for="filledCell">{isReadFilled}</label> -->
       </div>
     </div>
   </div>
